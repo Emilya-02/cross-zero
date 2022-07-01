@@ -1,0 +1,9 @@
+.kr {
+  &::before {
+    content: 'x';
+    position: relative;
+    color: #004cff;
+    left: 40%;
+    top: 40%;
+  }
+}

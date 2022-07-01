@@ -1,0 +1,9 @@
+.n {
+  &::before {
+    content: 'o';
+    position: relative;
+    color: #0bff17;
+    left: 40%;
+    top: 40%;
+  }
+}
