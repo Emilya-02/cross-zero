@@ -1,9 +1,10 @@
 .n {
+  font-family: serif;
+  font-size: 30px;
   &::before {
     content: 'o';
     position: relative;
     color: #0bff17;
-    left: 40%;
-    top: 40%;
+    left: 30%;
   }
 }

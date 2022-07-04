@@ -1,5 +1,5 @@
 *, *:before, *:after {
-  font-family: 'Proxima Nova Semibold';
+  font-family: serif;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   margin: 0;
@@ -19,3 +19,5 @@ body {
 @import './arena';
 @import './kr';
 @import './n';
+@import './buttons';
+@import './score';

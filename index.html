@@ -6,15 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>:)</title>
-  <link rel="stylesheet" href="./app.css">
+  <link rel="stylesheet" href="./css/app.css">
 </head>
 
 <body>
   <section class="score">
-    <div class="player1">0</div>
-    <div>:</div>
-    <div class="player2">0</div>
+    <div class="player1">
+      <p>0</p>
+    </div>
+    <p>:</p>
+    <div class="player2">
+      <p>0</p>
+    </div>
   </section>
+  <span>Ходит: Х</span>
   <section id="area" class="arena">
     <div id="item1" class="item"></div>
     <div id="item2" class="item"></div>
@@ -26,7 +31,13 @@
     <div id="item8" class="item"></div>
     <div id="item9" class="item"></div>
   </section>
-  <button id="startOverButton">Начать заново</button>
+  <section class="buttons">
+    <button id="startButton">Начать всё заново</button>
+    <button id="playAgainButton">Ещё раз</button>
+  </section>
+  <section id="winText">
+    <p></p>
+  </section>
 
 <script src="./app.js"></script>
 </body>

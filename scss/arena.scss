@@ -16,14 +16,12 @@
   height: 40px;
 }
 
-#startOverButton {
+span {
+  display: block;
   position: relative;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.score {
-  display: flex;
-  flex-wrap: nowrap;
+  text-align: center;
+  font-size: 18px;
+  color: #6cffff;
+  top: 30%;
+  transform: translateY(-50%);
 }

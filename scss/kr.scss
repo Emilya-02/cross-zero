@@ -1,9 +1,10 @@
 .kr {
+  font-family: serif;
+  font-size: 30px;
   &::before {
     content: 'x';
     position: relative;
     color: #004cff;
-    left: 40%;
-    top: 40%;
+    left: 30%;
   }
 }
