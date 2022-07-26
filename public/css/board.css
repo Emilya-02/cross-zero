@@ -1,4 +1,4 @@
-.arena {
+.board {
   position: relative;
   background: #000000;
   display: flex;
@@ -25,3 +25,4 @@ span {
   top: 30%;
   transform: translateY(-50%);
 }
+/*# sourceMappingURL=board.css.map */

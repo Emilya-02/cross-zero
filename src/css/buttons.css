@@ -1,0 +1,21 @@
+.buttons {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+button {
+  font-size: 18px;
+  background: #d5d5d5;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+}
+button:nth-child(1) {
+  margin-bottom: 20px;
+}
+/*# sourceMappingURL=buttons.css.map */

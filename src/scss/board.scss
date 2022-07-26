@@ -1,0 +1,27 @@
+.board {
+  position: relative;
+  background: #000000;
+  display: flex;
+  flex-wrap: wrap;
+  width: 120px;
+  height: 120px;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.item {
+  border: 1px solid #e0bfbd;
+  width: 40px;
+  height: 40px;
+}
+
+span {
+  display: block;
+  position: relative;
+  text-align: center;
+  font-size: 18px;
+  color: #6cffff;
+  top: 30%;
+  transform: translateY(-50%);
+}
