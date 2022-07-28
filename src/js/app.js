@@ -1,10 +1,19 @@
 import { checkForVictory } from './checkForVictory.js'
-import { gameEnd, currentText } from './gameFinish.js'
+import { gameEnd } from './gameFinish.js'
 
 const board = document.getElementById('board');
-export let valueAllSquares = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-export let X = true;
-export let win = false;
+
+const scoreFirstPlayer = document.getElementsByTagName("p")['0'];
+const scoreSecondPlayer = document.getElementsByTagName("p")['2'];
+
+let currentScoreFirstPlayer = Number(scoreFirstPlayer.textContent);
+let currentScoreSecondPlayer = Number(scoreSecondPlayer.textContent);
+
+const currentText = document.getElementsByTagName("span")[0];
+
+let valueAllSquares = [1, 1, 1, 1, 1, 1, 1, 1, 1];  // state game
+let X = true;
+let win = false;
 
 board.onclick = (event) => {
   let currentSquareID = event.target.id;
@@ -15,7 +24,7 @@ board.onclick = (event) => {
         valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] = "x";
         currentText.innerText = "Ходит: О";
         X = false;
-        win = checkForVictory("x");
+        win = checkForVictory("x", valueAllSquares);
       };
     }
     else {
@@ -24,11 +33,11 @@ board.onclick = (event) => {
         valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] = "o";
         currentText.innerText = "Ходит: X";
         X = true;
-        win = checkForVictory("o");
+        win = checkForVictory("o", valueAllSquares);
       };
     };
 
-    gameEnd();
+    gameEnd(valueAllSquares, X, win, currentText);
     return;
   };
 };
@@ -49,3 +58,13 @@ startPlayAgainButton.onclick = () => {
   }
 };
 
+export const addScore = (winner) => {
+  if (winner === "x") {
+    currentScoreFirstPlayer += 1;
+    scoreFirstPlayer.innerText = String(currentScoreFirstPlayer);
+  }
+  else {
+    currentScoreSecondPlayer += 1;
+    scoreSecondPlayer.innerText = String(currentScoreSecondPlayer);
+  };
+};

@@ -1,22 +1,18 @@
-import {valueAllSquares, X, win } from './app.js';
-
-export const currentText = document.getElementsByTagName("span")[0];
-
-export const gameEnd = () => {
+export const gameEnd = (valueAllSquares, X, win, currentText) => {
   if (win === true) {
     if (X === true) {
-      ChangeText("Победил О");
+      ChangeText("Победил О", currentText);
     }
     else {
-      ChangeText("Победил X");
+      ChangeText("Победил X", currentText);
     };
   };
 
   if ((valueAllSquares.includes(1) === false) && (win === false)) {
-    ChangeText("Ничья");
+    ChangeText("Ничья", currentText);
   };
 };
 
-const ChangeText = (str) => {
+const ChangeText = (str, currentText) => {
   currentText.innerText = str;
 };
