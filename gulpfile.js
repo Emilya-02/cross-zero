@@ -65,9 +65,9 @@ function myServer() {
         notify: false
     });
 
-    watch("src/**/*.html", { usePolling: true }, HTML);            // следим за HTML
-    watch("src/scss/**/*.scss", { usePolling: true }, SCSS) // следим за SASS
-    watch("src/js/**/*.js", { usePolling: true }, scripts)  // следим за JS
+    watch("src/**/*.html", { usePolling: true }, HTML);
+    watch("src/scss/**/*.scss", { usePolling: true }, SCSS)
+    watch("src/js/**/*.js", { usePolling: true }, scripts)
 }
 
 module.exports.default = series(HTML, SCSS, scripts, myServer);

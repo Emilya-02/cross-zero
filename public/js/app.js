@@ -11,7 +11,7 @@ let currentScoreSecondPlayer = Number(scoreSecondPlayer.textContent);
 
 const currentText = document.getElementsByTagName("span")[0];
 
-let valueAllSquares = [1, 1, 1, 1, 1, 1, 1, 1, 1];  // state game
+let gameState = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 let X = true;
 let win = false;
 
@@ -19,25 +19,25 @@ board.onclick = (event) => {
   let currentSquareID = event.target.id;
   if (win === false) {
     if (X === true) {
-      if (valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
+      if (gameState[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
         event.target.classList.add("kr");
-        valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] = "x";
+        gameState[currentSquareID[currentSquareID.length - 1] - 1] = "x";
         currentText.innerText = "Ходит: О";
         X = false;
-        win = checkForVictory("x", valueAllSquares);
+        win = checkForVictory("x", gameState);
       };
     }
     else {
-      if (valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
+      if (gameState[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
         event.target.classList.add("n");
-        valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] = "o";
+        gameState[currentSquareID[currentSquareID.length - 1] - 1] = "o";
         currentText.innerText = "Ходит: X";
         X = true;
-        win = checkForVictory("o", valueAllSquares);
+        win = checkForVictory("o", gameState);
       };
     };
 
-    gameEnd(valueAllSquares, X, win, currentText);
+    gameEnd(gameState, X, win, currentText);
     return;
   };
 };
@@ -49,7 +49,7 @@ startGameButton.onclick = () => {
 startPlayAgainButton.onclick = () => {
   currentText.style.display = "block";
   currentText.innerText = "Ходит: X";
-  valueAllSquares = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+  gameState = [1, 1, 1, 1, 1, 1, 1, 1, 1];
   win = false;
   X = true;
   for (let i = 0; i < board.children.length; i++) {

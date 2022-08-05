@@ -15,8 +15,7 @@ var scoreSecondPlayer = document.getElementsByTagName("p")['2'];
 var currentScoreFirstPlayer = Number(scoreFirstPlayer.textContent);
 var currentScoreSecondPlayer = Number(scoreSecondPlayer.textContent);
 var currentText = document.getElementsByTagName("span")[0];
-var valueAllSquares = [1, 1, 1, 1, 1, 1, 1, 1, 1]; // state game
-
+var gameState = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 var X = true;
 var win = false;
 
@@ -25,29 +24,29 @@ board.onclick = function (event) {
 
   if (win === false) {
     if (X === true) {
-      if (valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
+      if (gameState[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
         event.target.classList.add("kr");
-        valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] = "x";
+        gameState[currentSquareID[currentSquareID.length - 1] - 1] = "x";
         currentText.innerText = "Ходит: О";
         X = false;
-        win = (0, _checkForVictory.checkForVictory)("x", valueAllSquares);
+        win = (0, _checkForVictory.checkForVictory)("x", gameState);
       }
 
       ;
     } else {
-      if (valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
+      if (gameState[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
         event.target.classList.add("n");
-        valueAllSquares[currentSquareID[currentSquareID.length - 1] - 1] = "o";
+        gameState[currentSquareID[currentSquareID.length - 1] - 1] = "o";
         currentText.innerText = "Ходит: X";
         X = true;
-        win = (0, _checkForVictory.checkForVictory)("o", valueAllSquares);
+        win = (0, _checkForVictory.checkForVictory)("o", gameState);
       }
 
       ;
     }
 
     ;
-    (0, _gameFinish.gameEnd)(valueAllSquares, X, win, currentText);
+    (0, _gameFinish.gameEnd)(gameState, X, win, currentText);
     return;
   }
 
@@ -61,7 +60,7 @@ startGameButton.onclick = function () {
 startPlayAgainButton.onclick = function () {
   currentText.style.display = "block";
   currentText.innerText = "Ходит: X";
-  valueAllSquares = [1, 1, 1, 1, 1, 1, 1, 1, 1];
+  gameState = [1, 1, 1, 1, 1, 1, 1, 1, 1];
   win = false;
   X = true;
 
