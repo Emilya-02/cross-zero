@@ -16,7 +16,7 @@ body {
   height: 100vh;
 }
 
-.arena {
+.board {
   position: relative;
   background: #000000;
   display: flex;

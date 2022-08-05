@@ -1,16 +1,14 @@
 # node version
-node --version
+  node --version
 
-v16.13.2
+  v16.13.2
 
-npm --version
+  npm --version
 
-8.5.0
+  8.5.0
 
 # install
-npm install
+  npm install
 
 # gulp
-gulp sass-compile
-
-gulp watch
+  gulp
