@@ -60,7 +60,7 @@ module.exports.scripts = scripts;
 function myServer() {
     browserSync.init({
         server: {
-            baseDir: "public" // папка для локального сервера
+            baseDir: "public"
         },
         notify: false
     });
