@@ -1,10 +1,10 @@
-.n {
+.cross {
   font-family: serif;
   font-size: 30px;
   &::before {
-    content: 'o';
+    content: 'x';
     position: relative;
-    color: #0bff17;
+    color: #004cff;
     left: 30%;
   }
 }

@@ -44,22 +44,22 @@ span {
   transform: translateY(-50%);
 }
 
-.kr {
+.cross {
   font-family: serif;
   font-size: 30px;
 }
-.kr::before {
+.cross::before {
   content: "x";
   position: relative;
   color: #004cff;
   left: 30%;
 }
 
-.n {
+.zero {
   font-family: serif;
   font-size: 30px;
 }
-.n::before {
+.zero::before {
   content: "o";
   position: relative;
   color: #0bff17;

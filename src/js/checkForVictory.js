@@ -1,6 +1,4 @@
-import { addScore } from './app.js'
-
-export const checkForVictory = (x, gameState) => {
+const checkForVictory = (x, gameState) => {
     const lines = [
     [0, 1, 2],
     [3, 4, 5],

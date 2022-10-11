@@ -1,6 +1,6 @@
-export const gameEnd = (gameState, X, win, currentText) => {
-  if (win === true) {
-    if (X === true) {
+const gameEnd = (gameState, isX, isWin, currentText) => {
+  if (isWin === true) {
+    if (isX === true) {
       ChangeText("Победил О", currentText);
     }
     else {
@@ -8,7 +8,7 @@ export const gameEnd = (gameState, X, win, currentText) => {
     };
   };
 
-  if ((gameState.includes(1) === false) && (win === false)) {
+  if ((gameState.includes(1) === false) && (isWin === false)) {
     ChangeText("Ничья", currentText);
   };
 };

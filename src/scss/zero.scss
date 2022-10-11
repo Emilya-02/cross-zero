@@ -1,10 +1,10 @@
-.kr {
+.zero {
   font-family: serif;
   font-size: 30px;
   &::before {
-    content: 'x';
+    content: 'o';
     position: relative;
-    color: #004cff;
+    color: #0bff17;
     left: 30%;
   }
 }

@@ -1,45 +1,38 @@
-import { checkForVictory } from './checkForVictory.js'
-import { gameEnd } from './gameFinish.js'
-
 const board = document.getElementById('board');
 
-const scoreFirstPlayer = document.getElementsByTagName("p")['0'];
-const scoreSecondPlayer = document.getElementsByTagName("p")['2'];
+const scoreFirstPlayerElement = document.getElementById('scoreFirstPlayerElement');
+const scoreSecondPlayerElement = document.getElementById('scoreSecondPlayerElement');
 
-let currentScoreFirstPlayer = Number(scoreFirstPlayer.textContent);
-let currentScoreSecondPlayer = Number(scoreSecondPlayer.textContent);
+let scoreFirstPlayer = Number(scoreFirstPlayerElement.textContent);
+let scoreSecondPlayer = Number(scoreSecondPlayerElement.textContent);
 
 const currentText = document.getElementsByTagName("span")[0];
 
 let gameState = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-let X = true;
-let win = false;
+let isX = true;
+let isWin = false;
 
 board.onclick = (event) => {
   let currentSquareID = event.target.id;
-  if (win === false) {
-    if (X === true) {
-      if (gameState[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
-        event.target.classList.add("kr");
-        gameState[currentSquareID[currentSquareID.length - 1] - 1] = "x";
-        currentText.innerText = "Ходит: О";
-        X = false;
-        win = checkForVictory("x", gameState);
-      };
-    }
-    else {
-      if (gameState[currentSquareID[currentSquareID.length - 1] - 1] === 1) {
-        event.target.classList.add("n");
-        gameState[currentSquareID[currentSquareID.length - 1] - 1] = "o";
-        currentText.innerText = "Ходит: X";
-        X = true;
-        win = checkForVictory("o", gameState);
-      };
-    };
-
-    gameEnd(gameState, X, win, currentText);
-    return;
+  if (isWin === true) return;
+  if (gameState[currentSquareID[0]] !== 1) return;
+  if (isX === true) {
+    event.target.classList.add("cross");
+    gameState[currentSquareID[0]] = "x";
+    currentText.innerText = "Ходит: О";
+    isX = false;
+    isWin = checkForVictory("x", gameState);
+  }
+  else {
+    event.target.classList.add("zero");
+    gameState[currentSquareID[0]] = "o";
+    currentText.innerText = "Ходит: X";
+    isX = true;
+    isWin = checkForVictory("o", gameState);
   };
+
+  gameEnd(gameState, isX, isWin, currentText);
+  return;
 };
 
 startGameButton.onclick = () => {
@@ -50,21 +43,21 @@ startPlayAgainButton.onclick = () => {
   currentText.style.display = "block";
   currentText.innerText = "Ходит: X";
   gameState = [1, 1, 1, 1, 1, 1, 1, 1, 1];
-  win = false;
-  X = true;
+  isWin = false;
+  isX = true;
   for (let i = 0; i < board.children.length; i++) {
-    board.children[i].classList.remove('kr');
-    board.children[i].classList.remove('n');
+    board.children[i].classList.remove('cross');
+    board.children[i].classList.remove('zero');
   }
 };
 
-export const addScore = (winner) => {
+const addScore = (winner) => {
   if (winner === "x") {
-    currentScoreFirstPlayer += 1;
-    scoreFirstPlayer.innerText = String(currentScoreFirstPlayer);
+    scoreFirstPlayer += 1;
+    scoreFirstPlayerElement.innerText = String(scoreFirstPlayer);
   }
   else {
-    currentScoreSecondPlayer += 1;
-    scoreSecondPlayer.innerText = String(currentScoreSecondPlayer);
+    scoreSecondPlayer += 1;
+    scoreSecondPlayerElement.innerText = String(scoreSecondPlayer);
   };
 };
