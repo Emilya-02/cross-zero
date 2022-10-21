@@ -13,37 +13,16 @@ function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Sy
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var board = document.getElementById('board');
-var scoreFirstPlayerElement = document.getElementById('scoreFirstPlayerElement');
-var scoreSecondPlayerElement = document.getElementById('scoreSecondPlayerElement');
-var scoreFirstPlayer = Number(scoreFirstPlayerElement.textContent);
-var scoreSecondPlayer = Number(scoreSecondPlayerElement.textContent);
-var currentText = document.getElementsByTagName("span")[0];
+var scoreFirstPlayerElement = document.querySelector('#scoreFirstPlayerElement p');
+var scoreSecondPlayerElement = document.querySelector('#scoreSecondPlayerElement p');
+var currentConditionText = document.querySelector('#currentCondition');
 var gameState = [1, 1, 1, 1, 1, 1, 1, 1, 1];
 var isX = true;
 var isWin = false;
 
 board.onclick = function (event) {
-  var currentSquareID = event.target.id;
-  if (isWin === true) return;
-  if (gameState[currentSquareID[0]] !== 1) return;
-
-  if (isX === true) {
-    event.target.classList.add("cross");
-    gameState[currentSquareID[0]] = "x";
-    currentText.innerText = "Ходит: О";
-    isX = false;
-    isWin = checkForVictory("x", gameState);
-  } else {
-    event.target.classList.add("zero");
-    gameState[currentSquareID[0]] = "o";
-    currentText.innerText = "Ходит: X";
-    isX = true;
-    isWin = checkForVictory("o", gameState);
-  }
-
-  ;
-  gameEnd(gameState, isX, isWin, currentText);
-  return;
+  isX = gameRun(event, gameState, isX, isWin, currentConditionText, scoreFirstPlayerElement, scoreSecondPlayerElement);
+  console.log(gameState);
 };
 
 startGameButton.onclick = function () {
@@ -51,8 +30,8 @@ startGameButton.onclick = function () {
 };
 
 startPlayAgainButton.onclick = function () {
-  currentText.style.display = "block";
-  currentText.innerText = "Ходит: X";
+  currentConditionText.style.display = "block";
+  currentConditionText.innerText = "Ходит: X";
   gameState = [1, 1, 1, 1, 1, 1, 1, 1, 1];
   isWin = false;
   isX = true;
@@ -63,7 +42,36 @@ startPlayAgainButton.onclick = function () {
   }
 };
 
-var addScore = function addScore(winner) {
+var gameRun = function gameRun(event, gameState, isX, isWin, currentConditionText, scoreFirstPlayerElement, scoreSecondPlayerElement) {
+  var currentSquareID = event.target.id;
+  if (isWin === true) return;
+  if (gameState[currentSquareID[0]] !== 1) return;
+
+  if (isX === true) {
+    event.target.classList.add("cross");
+    gameState[currentSquareID[0]] = "x";
+    currentConditionText.innerText = "Ходит: О";
+    isX = false;
+    isWin = checkForVictory("x", gameState, scoreFirstPlayerElement, scoreSecondPlayerElement);
+    gameEnd(gameState, isX, isWin, currentConditionText);
+    return isX;
+  } else {
+    event.target.classList.add("zero");
+    gameState[currentSquareID[0]] = "o";
+    currentConditionText.innerText = "Ходит: X";
+    isX = true;
+    isWin = checkForVictory("o", gameState, scoreFirstPlayerElement, scoreSecondPlayerElement);
+    gameEnd(gameState, isX, isWin, currentConditionText);
+    return isX;
+  }
+
+  ;
+};
+
+var addScore = function addScore(winner, scoreFirstPlayerElement, scoreSecondPlayerElement) {
+  var scoreFirstPlayer = Number(scoreFirstPlayerElement.textContent);
+  var scoreSecondPlayer = Number(scoreSecondPlayerElement.textContent);
+
   if (winner === "x") {
     scoreFirstPlayer += 1;
     scoreFirstPlayerElement.innerText = String(scoreFirstPlayer);
@@ -75,7 +83,31 @@ var addScore = function addScore(winner) {
   ;
 };
 
-var checkForVictory = function checkForVictory(x, gameState) {
+var gameEnd = function gameEnd(gameState, isX, isWin, currentConditionText) {
+  if (isWin === true) {
+    if (isX === true) {
+      ChangeText("Победил О", currentConditionText);
+    } else {
+      ChangeText("Победил X", currentConditionText);
+    }
+
+    ;
+  }
+
+  ;
+
+  if (gameState.includes(1) === false && isWin === false) {
+    ChangeText("Ничья", currentConditionText);
+  }
+
+  ;
+};
+
+var ChangeText = function ChangeText(str, currentConditionText) {
+  currentConditionText.innerText = str;
+};
+
+var checkForVictory = function checkForVictory(x, gameState, scoreFirstPlayerElement, scoreSecondPlayerElement) {
   var lines = [[0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]];
 
   for (var i = 0; i < lines.length; i++) {
@@ -85,7 +117,7 @@ var checkForVictory = function checkForVictory(x, gameState) {
         c = _lines$i[2];
 
     if (gameState[a] != 1 && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
-      addScore(x);
+      addScore(x, scoreFirstPlayerElement, scoreSecondPlayerElement);
       return true;
     }
 
@@ -94,29 +126,5 @@ var checkForVictory = function checkForVictory(x, gameState) {
 
   ;
   return false;
-};
-
-var gameEnd = function gameEnd(gameState, isX, isWin, currentText) {
-  if (isWin === true) {
-    if (isX === true) {
-      ChangeText("Победил О", currentText);
-    } else {
-      ChangeText("Победил X", currentText);
-    }
-
-    ;
-  }
-
-  ;
-
-  if (gameState.includes(1) === false && isWin === false) {
-    ChangeText("Ничья", currentText);
-  }
-
-  ;
-};
-
-var ChangeText = function ChangeText(str, currentText) {
-  currentText.innerText = str;
 };
 //# sourceMappingURL=script.js.map
